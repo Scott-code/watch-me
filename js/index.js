@@ -12,7 +12,7 @@ const fetchMovies = async () => {
   console.log(movies);
 };
 
- const moviesDisplay = async () => {
+const moviesDisplay = async () => {
   await fetchMovies();
 
   movies.results.length = 12;
@@ -21,10 +21,10 @@ const fetchMovies = async () => {
     .map(
       (movie) =>
         `
-      <li>
+      <li class='jojo'>
         <h2>${movie.original_title}</h2>
         <div class="card-content">
-          <img src="https://image.tmdb.org/t/p/w500${movie.poster_path}"></img>
+          <img  src="https://image.tmdb.org/t/p/w500${movie.poster_path}" class='photo'></img>
           <div class="infos">
             <p>${movie.overview}</p>
             <p>Popularité : ${movie.popularity} ⭐</p>
@@ -44,6 +44,58 @@ form.addEventListener("submit", (e) => {
   moviesDisplay();
 });
 
+// le header de mon application web
+
+let toogle = document.querySelector(".toogle");
+
+let body = document.querySelector("body");
+
+toogle.addEventListener("click", function () {
+  body.classList.toggle("open");
+});
+
+const card = $("#result");
+
+$("#result").on("mousemove", function (t) {
+  let vertical = -($(window).innerWidth() / 2 - t.pageX) / 170,
+    horizontal = ($(window).innerHeight() / 2 - t.pageY) / 170;
+
+  card.attr(
+    "style",
+    "transform: rotateY(" + vertical + "deg) rotateX(" + horizontal + "deg)"
+  );
+});
 
 
 
+// button qui remonte
+
+
+const retour=document.querySelector('.retour')
+
+
+retour.addEventListener('click',()=>{
+
+window.scrollTo({
+
+top:0,
+
+left:0,
+
+behavior:"smooth"
+
+}
+
+)
+
+
+})
+
+
+
+
+
+
+
+
+// bouton qui remonte
